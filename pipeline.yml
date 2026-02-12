@@ -29,6 +29,11 @@ pipeline {
                 bat "docker run -d --name ${APP_NAME} -p ${APP_PORT}:8100 ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo "🔹 Kubernetes deployment will happen here in next step"
+            }
+        }
     }
     post {
         success {
