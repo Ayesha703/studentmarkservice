@@ -1,4 +1,4 @@
-pipeline {
+ pipeline {
     agent any
     environment {
         APP_NAME = "studentmarkservice"
@@ -27,11 +27,6 @@ pipeline {
                 bat "docker stop ${APP_NAME} || exit 0"
                 bat "docker rm ${APP_NAME} || exit 0"
                 bat "docker run -d --name ${APP_NAME} -p ${APP_PORT}:8100 ${IMAGE_NAME}:${IMAGE_TAG}"
-            }
-        }
-        stage('Deploy to Kubernetes') {
-            steps {
-                bat "kubectl apply -f sms-deployment.yaml"
             }
         }
     }
