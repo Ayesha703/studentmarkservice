@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    environment {
+        APP_NAME = "studentmarkservice"
+        IMAGE_NAME = "${APP_NAME}-image"
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        APP_PORT = 8100
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Ayesha703/studentmarkservice.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                bat "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f Dockerfile ."
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                bat "docker stop ${APP_NAME} || exit 0"  // stop old container if exists
+                bat "docker rm ${APP_NAME} || exit 0"    // remove old container if exists
+                bat "docker run -d --name ${APP_NAME} -p ${APP_PORT}:8100 ${IMAGE_NAME}:${IMAGE_TAG}"
+            }
+        }
+    }
+    post {
+        success {
+            echo "✅ Jenkins pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Jenkins pipeline failed!"
+        }
+    }
+}
