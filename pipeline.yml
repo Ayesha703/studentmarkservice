@@ -31,16 +31,11 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                echo "🔹 Kubernetes deployment will happen here in next step"
+                withEnv(["KUBECONFIG=C:\\Users\\aisha\\.kube\\config"]) {
+                    bat "kubectl apply -f sms-deployment.yaml"
+                }
             }
         }
     }
     post {
-        success {
-            echo "✅ Jenkins pipeline completed successfully!"
-        }
-        failure {
-            echo "❌ Jenkins pipeline failed!"
-        }
-    }
-}
+        succe
