@@ -9,7 +9,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ayesha703/studentmarkservice.git'
+                git branch: 'main', url: 'https://github.com/Ayesha703/studentmarkservice.git', credentialsId: 'abc'
+            }
+        }
+        stage('Build Maven Project') {
+            steps {
+                bat "mvn clean package"
             }
         }
         stage('Build Docker Image') {
@@ -19,8 +24,8 @@ pipeline {
         }
         stage('Run Docker Container') {
             steps {
-                bat "docker stop ${APP_NAME} || exit 0"  // stop old container if exists
-                bat "docker rm ${APP_NAME} || exit 0"    // remove old container if exists
+                bat "docker stop ${APP_NAME} || exit 0"
+                bat "docker rm ${APP_NAME} || exit 0"
                 bat "docker run -d --name ${APP_NAME} -p ${APP_PORT}:8100 ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
