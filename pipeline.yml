@@ -29,7 +29,8 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                bat "kubectl apply -f sms-deployment.yaml"
+        bat "kubectl apply -f sms-deployment.yaml --validate=false"
+
             }
         }
     }
