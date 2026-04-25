@@ -17,7 +17,6 @@ In addition to backend development, this project includes DevOps practices such 
 - Containerized the application using Docker
 - Configured CI/CD pipeline using pipeline.yml
 - Deployed the application using Kubernetes (sms-deployment.yaml)
-- 
 ## What I Learned
 - Building REST APIs using Spring Boot
 - Implementing CRUD operations
