@@ -23,5 +23,8 @@ In addition to backend development, this project includes DevOps practices such 
 - Working with Docker for containerization
 - Understanding CI/CD pipeline basics
 - Deploying applications using Kubernetes
-## Author
-Ayesha
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/afbf2a4e-dd60-467b-b097-5aba9f5e8cd6" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0cbd530a-55cb-46e3-83e8-a69b071b9562" />
+
+
